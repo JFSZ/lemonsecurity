@@ -1,0 +1,14 @@
+spring:
+ #配置端口
+  server:
+    port: 8080
+  #配置数据库
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
+  session:
+    store-type: none
+
+
