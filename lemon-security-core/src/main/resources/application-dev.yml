@@ -10,5 +10,6 @@ spring:
     password: root
   session:
     store-type: none
+  
 
 
