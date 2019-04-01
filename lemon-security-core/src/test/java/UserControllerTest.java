@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -12,6 +13,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
@@ -139,5 +141,23 @@ public class UserControllerTest {
     @Test
     public void demo(){
         System.out.println(LocalDateTime.now());
+    }
+
+    @Test
+    public void uploadFile() throws Exception {
+        String file = "刷新此输出流并强制写出所有缓冲的输出字节。flush 的常规协定是：如果此输出流的实现已经缓冲了以前写入的任何字节，则调用此方法指示应将这些字节立即写入它们预期的目标。 \n" +
+                "如果此流的预期目标是由基础操作系统提供的一个抽象（如一个文件），则刷新此流只能保证将以前写入到流的字节传递给操作系统进行写入，但不保证能将这些字节实际写入到物理设备（如磁盘驱动器）。 \n" +
+                "\n" +
+                "OutputStream 的 flush 方法不执行任何操作。 \n" +
+                "\n" +
+                "\n" +
+                "指定者：\n" +
+                "接口 Flushable 中的 flush\n" +
+                "抛出： \n" +
+                "IOException - 如果发生 I/O 错误。";
+        String result = mockMvc.perform(MockMvcRequestBuilders.fileUpload("/file")
+        .file(new MockMultipartFile("file","test.txt","multipart/form-data",file.getBytes("UTF-8"))))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString();
     }
 }
