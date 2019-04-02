@@ -3,6 +3,7 @@ package com.zzidc.web.controller;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +17,10 @@ import java.io.*;
  * @Date 2019/4/1 10:43
  **/
 @RestController
-@RequestMapping("/file")
+@RequestMapping(value = "/file")
 public class FileController {
     private static String folder = "E:\\test";
-    @PostMapping
+    @RequestMapping(value = "uploadFile",method = RequestMethod.POST)
     @ApiOperation(value = "文件上传接口",notes = "使用此接口上传文件")
     @ApiImplicitParam(name = "file",value = "使用MultipartFile的实例对象来接收文件数据",required = true,dataTypeClass = MultipartFile.class)
     public FileInfo uploadFile(@RequestParam MultipartFile file) throws IOException {
@@ -29,7 +30,7 @@ public class FileController {
         return new FileInfo(newFile.getAbsolutePath());
     }
 
-    @GetMapping("/{id}")
+    @RequestMapping(value = "downloadFile/{id}",method = RequestMethod.GET)
     @ApiOperation(value = "文档下载接口",notes = "使用此接口下载文档")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id",value = "文件ID",dataTypeClass = String.class,required = true),
