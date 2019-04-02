@@ -1,0 +1,6 @@
+spring:
+# 激活那个配置文件 目前选择开发环境配置文件
+  profiles:
+    active: dev
+
+

@@ -1,0 +1,24 @@
+package com.zzidc.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @ClassName LoginController
+ * @Author chenxue
+ * @Description TODO
+ * @Date 2019/4/2 17:43
+ **/
+@Controller
+public class UserInfoController {
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
+    }
+}
