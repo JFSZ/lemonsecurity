@@ -3,8 +3,8 @@ package com.zzidc.web.bean;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.zzidc.web.validator.IsIdCard;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 import java.util.Date;
 

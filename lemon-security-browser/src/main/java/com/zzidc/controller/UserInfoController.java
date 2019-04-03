@@ -3,6 +3,7 @@ package com.zzidc.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @Controller
 public class UserInfoController {
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(){
+
         return "login";
     }
-    @RequestMapping("/index")
+    @RequestMapping(value = "/index")
     public String index(){
         return "index";
     }

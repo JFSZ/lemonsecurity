@@ -35,16 +35,14 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()
-                .loginPage("/index")
-                .loginProcessingUrl("/login")
+                .loginPage("/login")
+                .loginProcessingUrl("/index")
                 /*.successHandler(userAuthenticationSuccessHandler)
                 .failureHandler(userFailureHander)*/
                 .and()
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .anyRequest()
-                .authenticated()
-                .and()
-                .csrf().disable();
+                .authenticated();
     }
 }
