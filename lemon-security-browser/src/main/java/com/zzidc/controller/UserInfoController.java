@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @Controller
 public class UserInfoController {
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/login")
     public String login(){
 
         return "login";
     }
     @RequestMapping(value = "/index")
     public String index(){
+        System.out.println("index页面");
         return "index";
     }
 }

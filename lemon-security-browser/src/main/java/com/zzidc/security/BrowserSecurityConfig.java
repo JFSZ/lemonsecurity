@@ -1,6 +1,5 @@
 package com.zzidc.security;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  **/
 @Configuration
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
-    private SecurityProperties properties;
     private UserAuthenticationSuccessHandler userAuthenticationSuccessHandler;
     private UserFailureHander userFailureHander;
 
@@ -34,15 +32,19 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/index")
-                /*.successHandler(userAuthenticationSuccessHandler)
-                .failureHandler(userFailureHander)*/
-                .and()
-                .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .anyRequest()
-                .authenticated();
+            .authorizeRequests()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/login.html")
+            .loginProcessingUrl("/index")
+            /*.successHandler(userAuthenticationSuccessHandler)
+            .failureHandler(userFailureHander)*/
+            .and()
+            .authorizeRequests()
+            .antMatchers("/login.html")
+            .permitAll()
+            .and().csrf().disable();
     }
 }
