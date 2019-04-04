@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <title>登录页面</title>
-    <meta name="_csrf" th:content="${_csrf.token}"/>
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
-    <form action="/index" th:action="@{index}" method="post">
+    <form action="/index"  method="post">
         <div>
             <label>用户名:</label>
             <input type="text" name="username"/>
@@ -18,7 +16,6 @@
         </div>
         <input type="submit" value="提交"/>
         <input type="reset" value="重置"/>
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     </form>
 </body>
 </html>
